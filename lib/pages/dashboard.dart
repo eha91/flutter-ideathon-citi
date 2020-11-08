@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
+import 'search.dart';
 
 class Dashboard extends StatefulWidget {
+  final List<String> list = List.generate(10, (index) => "Text $index");
+  final List<String> listist = [
+    "Fotógrafo",
+    "Periodista",
+    "Actor",
+    "Relojero",
+    "Pintor",
+    "Programador",
+    "Peluquero",
+    "Ingles",
+    "Musico",
+    "Cantante",
+    "Matematico",
+    "Doctor",
+    "Psicologo",
+    "Dentista"
+  ];
+
   Dashboard({Key key}) : super(key: key);
 
   @override
@@ -9,7 +28,8 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white54);
+  static const TextStyle optionStyle = TextStyle(
+      fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white54);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Inicio',
@@ -35,37 +55,42 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: Search(widget.listist));
+            },
+            icon: Icon(
+              Icons.search,
+              color: Color.fromRGBO(5, 109, 174, 1),
+            ),
+          )
+        ],
+        centerTitle: true,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: const Icon(
-            Icons.person_rounded, 
-            color: Color.fromRGBO(5, 109, 174, 1)
-          ),
+          icon: const Icon(Icons.person_rounded,
+              color: Color.fromRGBO(5, 109, 174, 1)),
           tooltip: 'Usuario',
           onPressed: () {},
         ),
         title: Text(
-          'Dashboard', 
-          style: TextStyle(
-            color: Colors.black
-          ),
+          'Dashboard',
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Container(
-        padding: EdgeInsets.only(top:30),
+        padding: EdgeInsets.only(top: 30),
         child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.only(
-                bottom: 30
-              ),
+              padding: const EdgeInsets.only(bottom: 30),
               child: Text(
                 '¡Hola Raymundo!',
                 style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold
-                ),
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             Card(
