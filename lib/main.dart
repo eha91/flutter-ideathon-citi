@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ideathon/pages/dashboard.dart';
+import 'package:ideathon/pages/dashboard_client.dart';
 import 'package:ideathon/pages/info_detail.dart';
 import 'package:ideathon/pages/service-customer.dart';
  
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       initialRoute: 'dashboard',
       routes: {
+        'dashboard-client':(BuildContext context) => DashboardClient(),
         'dashboard':(BuildContext context) => Dashboard(),
         'info-detail': (BuildContext conttext) => InfoDetail(),
         'customer': (BuildContext conttext) => ServiceCustomer()
