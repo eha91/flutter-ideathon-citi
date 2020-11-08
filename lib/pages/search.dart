@@ -69,7 +69,7 @@ class Search extends SearchDelegate {
           ),
           onTap: (){
             selectedResult = suggestionList[index];
-
+            Navigator.pushNamed(context, 'info-detail');
           },
         );
       },

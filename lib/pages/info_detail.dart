@@ -14,6 +14,9 @@ class _InfoDetailState extends State<InfoDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Regresar'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

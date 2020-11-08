@@ -17,7 +17,8 @@ class Dashboard extends StatefulWidget {
     "Matematico",
     "Doctor",
     "Psicologo",
-    "Dentista"
+    "Dentista",
+    "Barberia Mario"
   ];
 
   Dashboard({Key key}) : super(key: key);

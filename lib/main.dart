@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'info-detail',
+      initialRoute: 'dashboard',
       routes: {
         'dashboard':(BuildContext context) => Dashboard(),
         'info-detail': (BuildContext conttext) => InfoDetail(),
