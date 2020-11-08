@@ -152,8 +152,8 @@ class _DashboardState extends State<Dashboard> {
             label: 'Cartera',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'Pagar',
+            icon: Icon(Icons.calendar_today_outlined),
+            label: 'Mi agenda',
           ),
         ],
         currentIndex: _selectedIndex,
