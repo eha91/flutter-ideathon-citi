@@ -15,7 +15,11 @@ class _InfoDetailState extends State<InfoDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Regresar'),
+        title: const Text('Regresar', style: TextStyle(color: Color.fromRGBO(5, 109, 174, 1))),
+        backgroundColor: Colors.white,
+        iconTheme: IconThemeData(
+          color: Color.fromRGBO(5, 109, 174, 1)
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
