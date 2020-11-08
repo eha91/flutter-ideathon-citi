@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'modal.dart';
+
 class InfoDetail extends StatefulWidget {
   const InfoDetail({Key key}) : super(key: key);
 
@@ -10,6 +12,7 @@ class InfoDetail extends StatefulWidget {
 class _InfoDetailState extends State<InfoDetail> {
 
   TabController tabController;
+  bool isSwitched = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,8 @@ class _InfoDetailState extends State<InfoDetail> {
           children: [
             _infoBussines(context),
             _detail(),
-            _actions(),
+            //_actions(),
+            _moth(),
             Container(
               padding: EdgeInsets.symmetric(vertical: 20),
               child: _reserve(),
@@ -54,18 +58,50 @@ class _InfoDetailState extends State<InfoDetail> {
             ),
         ),
         Positioned(
-          bottom: 0,
+          top: 10,
+          right: 10,
+          child: Container(
+            child: Row(
+              children: [
+                Icon(Icons.star_outline,color: Colors.blue,),
+                Icon(Icons.star_outline,color: Colors.blue,),
+                Icon(Icons.star_outline,color: Colors.blue,),
+                Icon(Icons.star_outline,color: Colors.blue,),
+                Icon(Icons.star_outline,color: Colors.blue,),
+              ],
+            ),
+          ),
+        ),
+        Positioned(
+          width: 300,
+          bottom: 15,
           child: Container(
             padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-            color: Colors.lightBlueAccent,
-            child: Text(
-              'Barberia Mario',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 25,
-                fontWeight: FontWeight.bold
-              )
-            ),
+            color: Color.fromRGBO(5, 109, 174, 1),
+            child: Column(
+              children: [
+                Center(
+                  child: Text(
+                    'Raymundo Sanchez',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold
+                    )
+                  ),
+                ),
+                Center(
+                  child: Text(
+                    'Barberia Mario',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal
+                    )
+                  ),
+                )
+              ],
+            )
           ),
         )
       ],
@@ -78,17 +114,25 @@ class _InfoDetailState extends State<InfoDetail> {
       child: Column(
         children: [
           ListTile(
-            leading: Icon(Icons.location_on),
+            leading: Icon(Icons.location_on,color: Color.fromRGBO(5, 109, 174, 1)),
             title: Text('Maza de Juarez #45,Campamento 2 de Octubre,Iztacalco,CP. 08930'),
             subtitle: Text('A 3 km'),
           ),
           ListTile(
-            leading: Icon(Icons.speaker_notes),
+            leading: Icon(Icons.public,color: Color.fromRGBO(5, 109, 174, 1)),
             title: Text('Habla Español, Ingles'),
           ),
           ListTile(
-            leading: Icon(Icons.trending_up),
-            title: Text('40 consultas'),
+            leading: Icon(Icons.trending_up,color: Color.fromRGBO(5, 109, 174, 1)),
+            title: Text('40 Servicios Realizados'),
+          ),
+          ListTile(
+            leading: Switch(value: isSwitched, onChanged: (value) {
+              setState(() {
+                isSwitched = value;
+              });
+            }),
+            title: Text('¿Agregar a mi red?'),
           )
         ],
       ),
@@ -177,23 +221,16 @@ class _InfoDetailState extends State<InfoDetail> {
         children: [
           Row(
             children: [
-              itemHour('09:00', true),
-              itemHour('10:30', false),
-              itemHour('12:30', true)
+              itemHour('9 - 10 am', true),
+              itemHour('10 a 11 am', false),
+              itemHour('11 a 12 am', true)
             ],
           ),
           Row(
             children: [
-              itemHour('13:00', false),
-              itemHour('16:00', false),
-              itemHour('12:30', true)
-            ],
-          ),
-          Row(
-            children: [
-              itemHour('09:00', false),
-              itemHour('10:30', true),
-              itemHour('12:30', true)
+              itemHour('1 a 2 pm', false),
+              itemHour('2 a 3 pm', false),
+              itemHour('4 a 5 pm', true)
             ],
           ),
         ],
@@ -204,34 +241,87 @@ class _InfoDetailState extends State<InfoDetail> {
   itemHour(String hour,bool status) {
     return Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
+              margin: EdgeInsets.symmetric(vertical: 0,horizontal: 10),
               child: GestureDetector(
                 onTap: () {
                   if(status) {
-                    Navigator.pushNamed(context, 'customer',arguments: {
-                      'name': 'Barbaria Mario',
-                      'image': 'https://image.freepik.com/vector-gratis/dibujado-mano-vintage-letrero-color-barberia-clasico-poste-letras-hechas-mano_113045-85.jpg',
-                      'service': 'Corte de Pelo - Caballero',
-                      'total': '250.0'
-                    });
+                    // Navigator.pushNamed(context, 'customer',arguments: {
+                    //   'name': 'Barbaria Mario',
+                    //   'image': 'https://image.freepik.com/vector-gratis/dibujado-mano-vintage-letrero-color-barberia-clasico-poste-letras-hechas-mano_113045-85.jpg',
+                    //   'service': 'Corte de Pelo - Caballero',
+                    //   'total': '250.0'
+                    // });
+                    // Navigator.push(context, route)
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return Modal();
+                        });
+                    // _alert();
+                    // Modal();
                   }
                 },
                 child: Card(
-                  color: status ? Colors.lightBlue[50]:Colors.lightBlueAccent,
-                  child: Container(
-                    padding: EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-                    child: Text(
-                      hour,
-                      style: TextStyle(
-                        fontSize: 20
+                  color: Colors.white,
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.symmetric(vertical: 10,horizontal: 5),
+                        child: Text(
+                          hour,
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
-                      textAlign: TextAlign.center,
-                    ),
+                      Container(
+                        width: double.infinity,
+                        color: status ? Colors.blue:Colors.red,
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Text(
+                          status ? 'Disponible':'No disponible',
+                          style: TextStyle(color: Colors.white),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
             )
           );
+  }
+
+  Widget _alert( ) {
+    print("se hizo");
+    return AlertDialog(
+      content: Modal(),
+    );
+
+  }
+  
+  _moth() {
+    return Container(
+      child: Column(
+        children: [
+          Divider(
+            color: Colors.black,
+          ),
+          ListTile(
+            title: Center(
+              child: Text('Agenda - Noviembre'),
+            ),
+            trailing: Icon(Icons.chevron_right),
+            
+          ),
+          Divider(
+            color: Colors.black,
+          )
+        ],
+      ),
+    );
   }
   
 }
