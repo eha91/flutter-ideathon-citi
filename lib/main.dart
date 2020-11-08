@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
-      initialRoute: 'dashboard',
+      initialRoute: 'dashboard-client',
       routes: {
         'dashboard-client':(BuildContext context) => DashboardClient(),
         'dashboard':(BuildContext context) => Dashboard(),
