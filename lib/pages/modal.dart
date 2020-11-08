@@ -30,7 +30,7 @@ class _ModalState extends State<Modal> {
                   setState(() {
                     _state = _state + 1;
                     if (_state > 2) {
-                      Navigator.pushNamed(context, 'customer',arguments: {
+                      Navigator.pushNamed(context, 'payment',arguments: {
                         'name': 'Barbaria Mario',
                         'image': 'https://image.freepik.com/vector-gratis/dibujado-mano-vintage-letrero-color-barberia-clasico-poste-letras-hechas-mano_113045-85.jpg',
                         'service': 'Corte de Pelo - Caballero',
