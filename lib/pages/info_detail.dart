@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'modal.dart';
+
 class InfoDetail extends StatefulWidget {
   const InfoDetail({Key key}) : super(key: key);
 
@@ -208,12 +210,20 @@ class _InfoDetailState extends State<InfoDetail> {
               child: GestureDetector(
                 onTap: () {
                   if(status) {
-                    Navigator.pushNamed(context, 'customer',arguments: {
-                      'name': 'Barbaria Mario',
-                      'image': 'https://image.freepik.com/vector-gratis/dibujado-mano-vintage-letrero-color-barberia-clasico-poste-letras-hechas-mano_113045-85.jpg',
-                      'service': 'Corte de Pelo - Caballero',
-                      'total': '250.0'
-                    });
+                    // Navigator.pushNamed(context, 'customer',arguments: {
+                    //   'name': 'Barbaria Mario',
+                    //   'image': 'https://image.freepik.com/vector-gratis/dibujado-mano-vintage-letrero-color-barberia-clasico-poste-letras-hechas-mano_113045-85.jpg',
+                    //   'service': 'Corte de Pelo - Caballero',
+                    //   'total': '250.0'
+                    // });
+                    // Navigator.push(context, route)
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return Modal();
+                        });
+                    // _alert();
+                    // Modal();
                   }
                 },
                 child: Card(
@@ -232,6 +242,13 @@ class _InfoDetailState extends State<InfoDetail> {
               ),
             )
           );
+  }
+
+  Widget _alert( ) {
+    print("se hizo");
+    return AlertDialog(
+      content: Modal(),
+    );
   }
   
 }
