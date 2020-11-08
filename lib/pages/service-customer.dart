@@ -25,18 +25,21 @@ class _ServiceCustomerState extends State<ServiceCustomer>
 
   @override
   Widget build(BuildContext context) {
+    final arguments = ModalRoute.of(context).settings.arguments;
+    print('Argumentes');
+    print(arguments);
     final size = MediaQuery.of(context).size;
     final widthScreen = size.width;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Customer Service'),
+        title: const Text('Pago Servicio'),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: <Widget>[
-              _user(),
+              _user(arguments),
               SizedBox(height: 10),
               _date(widthScreen),
               SizedBox(height: 10),
@@ -85,9 +88,9 @@ class _ServiceCustomerState extends State<ServiceCustomer>
     );
   }
 
-  Widget _user() {
+  Widget _user(arguments) {
     return Container(
-      height: 88.0,
+      height: 150.0,
       decoration: BoxDecoration(
         color: const Color(0xffffffff),
         boxShadow: [
@@ -103,13 +106,16 @@ class _ServiceCustomerState extends State<ServiceCustomer>
           Padding(
             padding: const EdgeInsets.only(left: 40),
             child: Container(
-              width: 50.0,
-              height: 50.0,
+              width: 100.0,
+              height: 100.0,
               decoration: BoxDecoration(
                 borderRadius:
                     BorderRadius.all(Radius.elliptical(9999.0, 9999.0)),
                 color: const Color(0xffffffff),
                 border: Border.all(width: 1.0, color: const Color(0xff707070)),
+              ),
+              child: Image(
+                image: NetworkImage(arguments['image']),
               ),
             ),
           ),
@@ -124,7 +130,7 @@ class _ServiceCustomerState extends State<ServiceCustomer>
                 children: [
                   Container(
                     child: Text(
-                      'Name',
+                      arguments['name'],
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
                         fontSize: 12,
@@ -135,7 +141,7 @@ class _ServiceCustomerState extends State<ServiceCustomer>
                   ),
                   Container(
                     child: Text(
-                      'Servicio ofrece',
+                      arguments['service'],
                       style: TextStyle(
                         fontFamily: 'Segoe UI',
                         fontSize: 12,
@@ -171,7 +177,7 @@ class _ServiceCustomerState extends State<ServiceCustomer>
         children: [
           Container(
             child: Text(
-              'fecha',
+              'Fecha',
               style: TextStyle(
                 fontFamily: 'Segoe UI',
                 fontSize: 12,
@@ -182,7 +188,7 @@ class _ServiceCustomerState extends State<ServiceCustomer>
           ),
           Container(
             child: Text(
-              'domingo, 07 noviembre del 2020 ',
+              'Domingo, 07 noviembre del 2020, 09:00 a.m. ',
               style: TextStyle(
                 fontFamily: 'Segoe UI',
                 fontSize: 15,
@@ -339,7 +345,7 @@ class _ServiceCustomerState extends State<ServiceCustomer>
             bounds: Rect.fromLTWH(261.0, 15.0, 91.0, 27.0),
             size: Size(362.0, 56.0),
             child: Text(
-              'USD \$5.30',
+              'MXN \$250',
               style: TextStyle(
                 fontFamily: 'Segoe UI',
                 fontSize: 20,
